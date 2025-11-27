@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Awareness Portal</title>
+  <!-- Load Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Internal Stylesheet (from style.css) -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at 20% 30%, #00bcd4, transparent 40%),
+                  radial-gradient(circle at 80% 70%, #673ab7, transparent 40%),
+                  radial-gradient(circle at 50% 50%, #009688, transparent 50%);
+      background-color: #001f2b;
+      background-blend-mode: screen;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: #ffffff;    /* ✅ default text white */
+    }
+
+    /* HEADER */
+    .main-header {
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgb(255, 255, 255);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .school-logo {
+      height: 60px;        /* Default size */
+      width: auto;         /* Keeps proportions */
+      max-width: 100px;    /* Prevents it from becoming too wide */
+      object-fit: contain; /* Keeps image inside the box */
+      border-radius: 8px;    /* Optional: smooth corners */
+      /* Added color for the SVG icon */
+      color: #00eaff;
+    }
+
+    /* Optional: responsive tweak for smaller screens */
+    @media (max-width: 600px) {
+      .school-logo {
+        height: 45px;
+        max-width: 80px;
+      }
+    }
+
+    .portal-title {
+      color: #fff;
+      font-weight: 700;
+      font-size: 2rem;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    /* SIDEBAR */
+    #sidebar {
+      width: 260px;
+      min-height: calc(100vh - 80px); /* Adjusted for header height */
+      backdrop-filter: blur(12px);
+    }
+
+    .glass-sidebar {
+      background: rgba(0, 0, 0, 0.45);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 2px 0 15px rgba(0,0,0,0.3);
+    }
+
+    .glass-sidebar .nav-link {
+      padding: 10px 15px;
+      margin-bottom: 5px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .glass-sidebar .nav-link:hover,
+    .glass-sidebar .nav-link.active {
+      background: rgba(0, 188, 212, 0.4);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    /* MAIN CONTENT */
+    #content {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow-y: auto;
+      /* Added padding for spacing */
+      padding: 20px; 
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(15px);
+      border-radius: 16px;
+      color: #ffffff;    /* ✅ changed from #373838 to white */
+      max-width: 1100px;
+      width: 100%;
+      /* Removed margin-top: 40px for better alignment with padding */
+      box-shadow: 0 4px 30px rgba(0,0,0,0);
+      border: 1px solid rgba(255, 255, 255, 0);
+    }
+
+    .tip-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgb(255, 255, 255);
+      border-radius: 12px;
+      color: #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    .tip-card:hover {
+      background: rgba(0, 188, 212, 0.3);
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgb(255, 255, 255);
+      border-radius: 3px;
+    }
+
+    /* === QUIZ STYLES (FIXED) === */
+    .quiz-container {
+      background: rgba(16, 24, 32, 0.9);
+      border: 2px solid #0ef;
+      border-radius: 16px;
+      padding: 30px;
+      color: #fff;
+      text-align: left;
+      box-shadow: 0 0 25px rgba(0, 238, 255, 0.25);
+      margin-top: 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .quiz-question {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #00eaff;
+      margin-bottom: 20px;
+      border-left: 4px solid #00eaff;
+      padding-left: 15px;
+      line-height: 1.5;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column; /* ✅ ensures vertical stacking */
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .quiz-options button {
+      display: block; /* ✅ makes each button full-width block */
+      width: 100%;
+      background: #1a1f2b;
+      border: 1px solid #00eaff;
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.4;
+      transition: all 0.3s ease;
+      white-space: normal; /* ✅ allows text wrapping inside buttons */
+    }
+
+    .quiz-options button:hover {
+      background: #00eaff;
+      color: #000;
+      box-shadow: 0 0 15px rgba(0, 238, 255, 0.6);
+      transform: scale(1.02);
+    }
+
+    .quiz-result {
+      text-align: center;
+      background: rgba(0, 238, 255, 0.05);
+      border: 2px solid #00eaff;
+      border-radius: 12px;
+      padding: 30px 20px;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(0, 238, 255, 0.3);
+    }
+
+    .quiz-result p {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+
+    #restart-quiz {
+      border-color: #00eaff;
+      color: #00eaff;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    #restart-quiz:hover {
+      background: #00eaff;
+      color: #000;
+      box-shadow: 0 0 12px rgba(0, 238, 255, 0.5);
+    }
+
+    /* ✅ Highlight correct/wrong answers */
+    .quiz-options button.correct {
+      background: rgba(0, 255, 0, 0.3) !important;
+      border-color: #0f0;
+    }
+    .quiz-options button.wrong {
+      background: rgba(255, 0, 0, 0.3) !important;
+      border-color: #f00;
+    }
+    
+    /* Video Grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .video-item {
+      position: relative;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #00eaff;
+    }
+
+    .video-item iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+
+    /* ✅ Responsive adjustments */
+    @media (max-width: 576px) {
+       .glass-card {
+         margin-top: 20px;
+      }
+    }
+
+    /* === CHATBOT STYLES === */
+    .chat-fab {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background-color: #00eaff;
+      color: #001f2b;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 4px 15px rgba(0, 238, 255, 0.4);
+      cursor: pointer;
+      z-index: 1010;
+      transition: all 0.3s ease;
+    }
+    .chat-fab:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 238, 255, 0.6);
+    }
+    .chat-fab svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .chat-window {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 350px;
+      max-width: 90vw;
+      height: 500px;
+      max-height: 70vh;
+      background: #001f2b;
+      border: 2px solid #00eaff;
+      border-radius: 16px;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+      z-index: 1009;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      /* Start hidden */
+      opacity: 0;
+      transform: translateY(20px);
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .chat-window.open {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+
+    .chat-header {
+      background: rgba(0, 238, 255, 0.1);
+      padding: 15px;
+      color: #00eaff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #00eaff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-header .close-chat {
+      cursor: pointer;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .chat-body {
+      flex-grow: 1;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .chat-message {
+      padding: 10px 15px;
+      border-radius: 12px;
+      max-width: 80%;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+    .chat-message.user {
+      background: #00eaff;
+      color: #001f2b;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .chat-message.model {
+      background: #1a1f2b;
+      color: #fff;
+      border: 1px solid #00eaff;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .chat-message.loading {
+      background: #1a1f2b;
+      color: #fff;
+      border: 1px solid #00eaff;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      font-style: italic;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #00eaff;
+    }
+    .chat-input input {
+      flex-grow: 1;
+      background: #1a1f2b;
+      border: 1px solid #00eaff;
+      border-radius: 8px;
+      color: #fff;
+      padding: 10px;
+      margin-right: 8px;
+    }
+    .chat-input input::placeholder {
+      color: #aaa;
+    }
+    .chat-input button {
+      background: #00eaff;
+      border: none;
+      border-radius: 8px;
+      color: #001f2b;
+      font-weight: bold;
+      padding: 0 15px;
+      cursor: pointer;
+    }
+    
+    @media (max-width: 576px) {
+        .chat-window {
+            width: calc(100vw - 40px);
+            right: 20px;
+            bottom: 80px;
+        }
+        .chat-fab {
+            bottom: 20px;
+            right: 20px;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="main-header d-flex align-items-center justify-content-between px-4 py-2">
+    <div class="d-flex align-items-center">
+      <!-- Replaced logo.jpg with an inline SVG icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="school-logo">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.333 9-6.03 9-11.623 0-1.662-.36-3.26-.998-4.748A11.959 11.959 0 0 1 12 2.714v.022Z" />
+      </svg>
+    </div>
+    <h1 class="portal-title flex-grow-1 text-center">Sanskriti Cyber Security</h1>
+  </header>
+
+  <!-- WRAPPER -->
+  <div class="d-flex" id="wrapper">
+
+    <!-- SIDEBAR -->
+    <div class="glass-sidebar text-white p-3" id="sidebar">
+      <ul class="nav flex-column">
+        <li class="nav-item"><a href="#" class="nav-link text-white active" data-section="safety">Cyber Safety Tips</a></li>
+        <li class="nav-item"><a href="#" class="nav-link text-white" data-section="awareness">Cyber Awareness</a></li>
+        <li class="nav-item"><a href="#" class="nav-link text-white" data-section="digest">Daily Digest</a></li>
+        <li class="nav-item"><a href="#" class="nav-link text-white" data-section="manual">Citizen Manual</a></li>
+        <li class="nav-item"><a href="#" class="nav-link text-white" data-section="quiz">Quiz</a></li>
+        <li class="nav-item"><a href="#" class="nav-link text-white" data-section="videos">Videos</a></li>
+      </ul>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="p-4 flex-grow-1" id="content">
+      <div class="glass-card p-4" id="main-card">    
+        <!-- Content will be injected by JavaScript -->
+        <h2>Cyber Safety Tips</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+          <div class="col">
+            <div class="card tip-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Use Strong Passwords</h5>
+                <p class="card-text">Create unique, complex passwords and avoid using the same one for multiple accounts.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card tip-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Enable Two-Factor Authentication</h5>
+                <p class="card-text">Add an extra layer of protection to your accounts with 2FA wherever possible.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card tip-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Avoid Phishing Scams</h5>
+                <p class="card-text">Never click suspicious links or share personal details via email or messages.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card tip-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Update Regularly</h5>
+                <p class="card-text">Keep your software, apps, and devices updated to patch security vulnerabilities.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card tip-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Use Secure Wi-Fi</h5>
+                <p class="card-text">Avoid public Wi-Fi for sensitive transactions. Use VPNs for secure connections.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card tip-card h-100">
+              <div class="card-body">
+                <h5 class="card-title">Backup Your Data</h5>
+                <p class="card-text">Regularly back up important data to prevent loss from attacks or hardware failure.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- === CHATBOT UI === -->
+  <div class="chat-fab" id="chat-fab-btn">
+    <!-- Chatbot Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Z" />
+      <path d="M8.25 10.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V10.875Z" />
+      <path d="M10.125 12.375a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V12.375Z" />
+      <path d="M12 10.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V10.875Z" />
+      <path d="M13.875 12.375a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V12.375Z" />
+      <path d="M15.75 10.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V10.875Z" />
+      <path d="M16.5 13.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V13.875Z" />
+      <path d="M11.25 15.375a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V15.375Z" />
+      <path d="M13.125 16.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V16.875Z" />
+      <path d="M15 15.375a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V15.375Z" />
+      <path d="M7.5 13.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V13.875Z" />
+    </svg>
+  </div>
+
+  <div class="chat-window" id="chat-window">
+    <div class="chat-header">
+      <span>CyberPal AI</span>
+      <span class="close-chat" id="close-chat-btn">&times;</span>
+    </div>
+    <div class="chat-body" id="chat-body">
+      <!-- Initial Message -->
+      <div class="chat-message model">
+        Hi! I'm CyberPal. Ask me any questions about cyber safety, like "What is phishing?" or "How do I make a strong password?".
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chat-input-text" placeholder="Ask a safety question...">
+      <button id="chat-send-btn">Send</button>
+    </div>
+  </div>
+
+  <!-- Load Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Internal JavaScript (from script.js) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll("#sidebar .nav-link");
+      const mainCard = document.getElementById("main-card");
+
+      const sections = {
+        safety: `
+          <h2>Cyber Safety Tips</h2>
+          <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Use Strong Passwords</h5>
+                  <p class="card-text">
+                    Create long, unique passwords with a mix of letters, numbers, and symbols. 
+                    Never reuse the same password on banking, social media, and email accounts.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Enable Two-Factor Authentication</h5>
+                  <p class="card-text">
+                    Turn on 2FA for email, social media, and banking apps so even if someone 
+                    knows your password, they still cannot log in without the OTP or approval.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Avoid Phishing Scams</h5>
+                  <p class="card-text">
+                    Do not trust links asking for OTP, ATM PIN, or card details. 
+                    Check the sender, spelling of the website, and when in doubt, type the 
+                    official website address yourself instead of clicking links.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Update Regularly</h5>
+                  <p class="card-text">
+                    Keep your phone, laptop, browsers, and apps updated. 
+                    Updates fix security bugs that attackers try to abuse.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Use Secure Wi-Fi</h5>
+                  <p class="card-text">
+                    Avoid using public Wi-Fi for UPI, banking, or passwords. 
+                    If you must use it, connect through a trusted VPN and log out after use.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Backup Your Data</h5>
+                  <p class="card-text">
+                    Take regular backups of important documents, photos, and school work to 
+                    cloud storage or an external drive so you don’t lose everything after 
+                    a hack, virus, or device damage.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `,
+        awareness: `
+          <h2>Cyber Awareness</h2>
+          <p>
+            Cyber awareness means understanding how to use technology <strong>smartly and safely</strong>. 
+            It is not only for IT experts – every student, parent, teacher, and citizen needs it.
+          </p>
+          <p>
+            We share photos, homework, payments, and personal details online every day. 
+            At the same time, cyber criminals try to steal passwords, spread fake news, 
+            hack accounts, and cheat people with online frauds. Cyber awareness helps us 
+            recognise these dangers <strong>before</strong> they harm us.
+          </p>
+
+          <h4 class="mt-4">What Does Being Cyber Aware Mean?</h4>
+          <ul>
+            <li>Thinking twice before clicking on links or downloading unknown files.</li>
+            <li>Protecting personal information like phone number, address, Aadhaar, and card details.</li>
+            <li>Using strong passwords and two-factor authentication on important accounts.</li>
+            <li>Identifying scams such as phishing emails, fake customer care, and UPI frauds.</li>
+            <li>Behaving responsibly online – no cyberbullying, trolling, or sharing others’ private data.</li>
+          </ul>
+
+          <h4 class="mt-4">Why Is Cyber Awareness Important?</h4>
+          <ul>
+            <li>🛡️ Protects your <strong>money</strong> and <strong>digital identity</strong>.</li>
+            <li>😊 Keeps your <strong>online reputation</strong> clean and respectful.</li>
+            <li>👨‍👩‍👧 Helps your family and friends stay safe in the digital world.</li>
+            <li>🇮🇳 Supports a safer, more responsible <strong>Digital India</strong>.</li>
+          </ul>
+
+          <p class="mt-3">
+            Cyber awareness is not a one-time lesson; it is a <strong>daily habit</strong>. 
+            When we stay updated, follow safe practices, and guide others, we all contribute to a 
+            safer digital environment for our school, community, and country.
+          </p>
+        `,
+        digest: `
+          <h2>Daily Digest</h2>
+          <div class="row row-cols-1 row-cols-md-2 g-4 mt-3">
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">🚨 Scam of the Day: Fake Delivery</h5>
+                  <p class="card-text">
+                    “Your package is waiting!” – If you didn’t order anything, the only thing 
+                    waiting is a cyber trap. Don’t click unknown links or share personal details.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">🔐 Password Pizza Rule</h5>
+                  <p class="card-text">
+                    A strong password = lots of toppings: symbols, numbers, uppercase & lowercase letters. 
+                    Thin (short) = weak! Make it long and loaded.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">🧠 Think Before You Click</h5>
+                  <p class="card-text">
+                    If a message feels urgent, emotional, or “too good to be true”, pause. 
+                    Hackers use fear and excitement to trick you into clicking quickly.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">🛡️ Term of the Day: VPN</h5>
+                  <p class="card-text">
+                    A Virtual Private Network (VPN) encrypts your internet traffic. 
+                    Use it on public Wi-Fi to keep your browsing and passwords private and secure.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `,
+        manual: `
+          <h2>Citizen Manual</h2>
+          <p class="mb-3">
+            Follow this simple flow to stay safe online and know what to do if something goes wrong.
+          </p>
+
+          <div class="container">
+            <div class="card mb-3 p-3 tip-card">
+              <h5>1️⃣ Identify the Source</h5>
+              <p>Is the message, call, or link from a trusted person or official organisation?</p>
+              <p><strong>If YES →</strong> Go to Step 2.</p>
+              <p><strong>If NO / Not sure →</strong> Treat it as suspicious.</p>
+            </div>
+
+            <div class="text-center mb-2"><h2>⬇️</h2></div>
+
+            <div class="card mb-3 p-3 tip-card">
+              <h5>2️⃣ Check for Red Flags</h5>
+              <ul>
+                <li>Spelling mistakes or strange language.</li>
+                <li>Unknown or shortened links.</li>
+                <li>Too good to be true offers (lottery, prizes, cashback, etc.).</li>
+                <li>Urgent messages: “last chance”, “your account will be blocked”.</li>
+              </ul>
+              <p><strong>If ANY appear → STOP, don’t click, don’t share details.</strong></p>
+            </div>
+
+            <div class="text-center mb-2"><h2>⬇️</h2></div>
+
+            <div class="card mb-3 p-3 tip-card">
+              <h5>3️⃣ Verify Through a Safe Channel</h5>
+              <p>
+                Contact the organisation or person using an official number, website, or in person. 
+                Never use the phone number or link given in the suspicious message.
+              </p>
+            </div>
+
+            <div class="text-center mb-2"><h2>⬇️</h2></div>
+
+            <div class="card mb-3 p-3 tip-card">
+              <h5>4️⃣ Take Action</h5>
+              <ul>
+                <li>Report suspicious messages and accounts on apps or to authorities.</li>
+                <li>Block unknown or abusive senders.</li>
+                <li>Change compromised passwords immediately.</li>
+                <li>Enable 2FA on important accounts.</li>
+              </ul>
+            </div>
+
+            <div class="text-center mb-2"><h2>⬇️</h2></div>
+
+            <div class="card mb-3 p-3 bg-light text-dark"> <!-- Changed for emphasis -->
+              <h5>🏁 If You Become a Victim</h5>
+              <p>
+                Don’t panic. Take screenshots, keep evidence, and report:
+              </p>
+              <ul class="text-dark">
+                <li>📞 National Cybercrime Helpline (India): <strong>1930</strong></li>
+                <li>🌐 Online portal: <strong>cybercrime.gov.in</strong></li>
+                <li>👨‍🏫 Inform a parent, teacher, or trusted adult immediately.</li>
+              </ul>
+              <p>Awareness + quick reporting can save money, accounts, and reputations.</p>
+            </div>
+          </div>
+        `,
+        quiz: `
+          <h2>Cyber Safety Quiz</h2>
+          <div class="quiz-container">
+            <div id="quiz-box"></div>
+          </div>
+        `,
+        videos: `
+          <h2>Cyber Awareness Videos</h2>
+          <div class="video-grid">
+            <div class="video-item">
+              <iframe 
+                src="https://www.youtube.com/embed/shQEXpUwaIY"
+                title="Cyber Safety Tips"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="video-item">
+              <iframe 
+                src="https://www.youtube.com/embed/VEQd-jmVs44"
+                title="Phishing Awareness"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
+            </div>
+          </div>
+        `
+      };
+
+      // default content on load
+      mainCard.innerHTML = sections.safety;
+
+      // Sidebar navigation handler
+      links.forEach(link => {
+        link.addEventListener("click", e => {
+          e.preventDefault();
+          links.forEach(l => l.classList.remove("active"));
+          link.classList.add("active");
+
+          const section = link.getAttribute("data-section");
+          mainCard.innerHTML = sections[section];
+
+          if (section === "quiz") startQuiz();
+        });
+      });
+
+      // ======================
+      // 🧠 IMPROVED QUIZ LOGIC
+      // ======================
+      function startQuiz() {
+        const quizData = [
+          {
+            question: "You receive an email from your bank asking you to verify your account by clicking a link. What should you do?",
+            options: [
+              "Click the link and log in immediately to avoid account lockout",
+              "Call your bank using the number on their official website to confirm",
+              "Reply to the email asking for more details",
+              "Forward the email to your colleagues to warn them"
+            ],
+            correct: 1
+          },
+          {
+            question: "Which password is the MOST secure?",
+            options: [
+              "BlueSky2023",
+              "T!m#b3r@91$!z",
+              "JohnDoe1995",
+              "Password#1"
+            ],
+            correct: 1
+          },
+          {
+            question: "You connect to a free airport Wi-Fi that doesn’t ask for a password. What’s the safest approach?",
+            options: [
+              "Use it only for browsing social media",
+              "Avoid logging into any account and use a VPN",
+              "It’s fine as long as the airport is reputable",
+              "Send important emails quickly before leaving"
+            ],
+            correct: 1
+          },
+          {
+            question: "Which of these actions BEST protects against ransomware attacks?",
+            options: [
+              "Opening attachments from known senders without checking",
+              "Installing antivirus but skipping updates",
+              "Regularly backing up your files to offline or cloud storage",
+              "Ignoring suspicious pop-ups"
+            ],
+            correct: 2
+          },
+          {
+            question: "What’s a sign that a website might NOT be secure?",
+            options: [
+              "It uses HTTPS in the address bar",
+              "It asks for payment details on an HTTP page",
+              "It displays a lock icon in the browser bar",
+              "It loads slowly"
+            ],
+            correct: 1
+          },
+          {
+            question: "An employee gets an email from the CEO asking for an urgent money transfer. What’s this likely to be?",
+            options: [
+              "Social engineering or business email compromise",
+              "Normal corporate procedure",
+              "An internal system test",
+              "Spam from a marketing campaign"
+            ],
+            correct: 0
+          },
+          {
+            question: "What’s the BEST way to securely dispose of an old hard drive?",
+            options: [
+              "Format it once and throw it away",
+              "Delete all files manually",
+              "Physically destroy or use certified data wiping tools",
+              "Give it to a friend"
+            ],
+            correct: 2
+          },
+          {
+            question: "Which of the following is the SAFEST method to store your passwords?",
+            options: [
+              "In a text file on your desktop",
+              "In a secure password manager with encryption",
+              "Writing them in a notebook near your desk",
+              "Saving them in your browser’s autocomplete"
+            ],
+            correct: 1
+          },
+          {
+            question: "What should you do before downloading software from the internet?",
+            options: [
+              "Check the publisher and verify authenticity",
+              "Download it from any site that looks professional",
+              "Disable antivirus to speed up installation",
+              "Skip license agreements to save time"
+            ],
+            correct: 0
+          },
+          {
+            question: "What’s the FIRST thing to do if you suspect your device has been hacked?",
+            options: [
+              "Ignore it until you’re sure",
+              "Disconnect it from the internet and report to IT/security",
+              "Install random antivirus apps immediately",
+              "Restart your computer and continue working"
+            ],
+            correct: 1
+          }
+        ];
+
+        const quizBox = document.getElementById("quiz-box");
+        let current = 0;
+        let score = 0;
+
+        function loadQuestion() {
+          if (current >= quizData.length) {
+            quizBox.innerHTML = `
+              <div class="quiz-result">
+                <p>You scored <strong>${score}</strong> out of <strong>${quizData.length}</strong> 🧠</p>
+                <p>${
+                  score >= 8
+                    ? "Excellent! You're cyber smart! 🔐"
+                    : score >= 5
+                    ? "Good job! But you can learn a bit more. 💡"
+                    : "Keep practicing — cyber safety takes awareness! ⚠️"
+                }</p>
+                <button class="btn btn-outline-light mt-3" id="restart-quiz">Restart Quiz</button>
+              </div>
+            `;
+            document.getElementById("restart-quiz").addEventListener("click", () => {
+              current = 0;
+              score = 0;
+              loadQuestion();
+            });
+            return;
+          }
+
+          const q = quizData[current];
+          quizBox.innerHTML = `
+            <div class="quiz-question">${current + 1}. ${q.question}</div>
+            <div class="quiz-options">
+              ${q.options
+                .map((opt, i) => `<button data-index="${i}">${opt}</button>`)
+                .join("")}
+            </div>
+          `;
+
+          document.querySelectorAll(".quiz-options button").forEach(btn => {
+            // FIX: Removed the underscore from the arrow function definition
+            btn.addEventListener("click", () => {
+              const selected = parseInt(btn.getAttribute("data-index"));
+              const allButtons = document.querySelectorAll(".quiz-options button");
+              
+              // Disable all buttons after one is clicked
+              allButtons.forEach(b => b.disabled = true);
+
+              if (selected === q.correct) {
+                score++;
+                btn.style.background = "rgba(0,255,0,0.3)";
+                btn.style.borderColor = "#0f0";
+              } else {
+                btn.style.background = "rgba(255,0,0,0.3)";
+                btn.style.borderColor = "#f00";
+                // Also highlight the correct answer
+                allButtons[q.correct].style.background = "rgba(0,255,0,0.3)";
+                allButtons[q.correct].style.borderColor = "#0f0";
+              }
+
+              setTimeout(() => {
+                current++;
+                loadQuestion();
+              }, 1200); // Increased time to see the correct answer
+            });
+          });
+        }
+
+        loadQuestion();
+      }
+
+      // ======================
+      // 🤖 CHATBOT LOGIC
+      // ======================
+      const chatWindow = document.getElementById("chat-window");
+      const chatFabBtn = document.getElementById("chat-fab-btn");
+      const closeChatBtn = document.getElementById("close-chat-btn");
+      const chatBody = document.getElementById("chat-body");
+      const chatInput = document.getElementById("chat-input-text");
+      const chatSendBtn = document.getElementById("chat-send-btn");
+      
+      // System prompt for the AI
+      const systemPrompt = `You are 'Cyber bot', a friendly AI assistant for the Sanskriti Cyber Security portal.
+Your job is to help students (under 18) understand cybersecurity.
+All your answers MUST be safe, age-appropriate, and strictly related to topics like online safety, passwords, phishing, malware, cyberbullying, safe social media use, and digital citizenship.
+If asked about anything else (like drugs, violence, or complex non-cyber topics), you MUST politely decline and guide the user back to cybersecurity.
+Keep answers clear, simple, and easy to understand. Use emojis where appropriate to be friendly.`;
+
+      // Array to hold the conversation history
+      let chatHistory = [
+        {
+          role: "model",
+          parts: [{ text: "Hi! I'm CyberPal. Ask me any questions about cyber safety, like 'What is phishing?' or 'How do I make a strong password?'." }]
+        }
+      ];
+
+      // Toggle chat window
+      chatFabBtn.addEventListener("click", () => {
+        chatWindow.classList.toggle("open");
+      });
+      closeChatBtn.addEventListener("click", () => {
+        chatWindow.classList.remove("open");
+      });
+
+      // Send message on button click
+      chatSendBtn.addEventListener("click", sendMessage);
+      // Send message on 'Enter' key press
+      chatInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          sendMessage();
+        }
+      });
+
+      function sendMessage() {
+        const userQuery = chatInput.value.trim();
+        if (userQuery === "") return;
+
+        // Add user message to UI
+        addMessageToUI(userQuery, "user");
+        // Add user message to history
+        chatHistory.push({ role: "user", parts: [{ text: userQuery }] });
+        
+        chatInput.value = "";
+        
+        // Show loading indicator
+        const loadingMessageId = "loading-" + Date.now();
+        addMessageToUI("CyberPal is typing...", "loading", loadingMessageId);
+
+        // Call the AI
+        callGeminiAPI(loadingMessageId);
+      }
+
+      function addMessageToUI(text, sender, messageId = null) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("chat-message", sender);
+        if (messageId) {
+            messageElement.id = messageId;
+        }
+        messageElement.textContent = text;
+        chatBody.appendChild(messageElement);
+        // Scroll to bottom
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      async function callGeminiAPI(loadingMessageId) {
+        const apiKey = "AIzaSyBGKorEtQLOrGGaakNUeQcgg067r2DVCkA"; // API key is handled by the environment
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+        const payload = {
+          contents: chatHistory, // Send the entire history
+          systemInstruction: {
+            parts: [{ text: systemPrompt }]
+          },
+        };
+
+        try {
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) {
+            // Try to get error message from response body
+            let errorBody = await response.text();
+            try {
+                errorBody = JSON.parse(errorBody);
+            } catch(e) {
+                // Not JSON, just use text
+            }
+            console.error("API Error Response:", errorBody);
+            throw new Error(`API Error: ${response.status} ${response.statusText}`);
+          }
+
+          const result = await response.json();
+          const aiResponse = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+          const loadingElement = document.getElementById(loadingMessageId);
+
+          if (aiResponse) {
+            // Add AI response to history
+            chatHistory.push({ role: "model", parts: [{ text: aiResponse }] });
+            // Update loading message with actual response
+            if (loadingElement) {
+                loadingElement.textContent = aiResponse;
+                loadingElement.classList.remove("loading");
+                loadingElement.classList.add("model");
+            } else {
+                addMessageToUI(aiResponse, "model");
+            }
+          } else {
+            console.error("Invalid AI response structure:", result);
+            throw new Error("No valid response from AI.");
+          }
+
+        } catch (error) {
+          console.error("Chatbot error:", error);
+          const loadingElement = document.getElementById(loadingMessageId);
+          const errorMessage = "Sorry, I'm having trouble connecting right now. Please try again in a moment.";
+          if (loadingElement) {
+              loadingElement.textContent = errorMessage;
+              loadingElement.classList.remove("loading");
+              loadingElement.classList.add("model");
+          } else {
+              addMessageToUI(errorMessage, "model");
+          }
+           // Add error to history so model knows it failed
+           chatHistory.push({ role: "model", parts: [{ text: errorMessage }] });
+        } finally {
+            // Ensure chat is scrolled to the bottom
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+      }
+
+    });
+  </script>
+</body>
+</html>
