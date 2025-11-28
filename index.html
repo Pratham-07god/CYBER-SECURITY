@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cyber Awareness Portal</title>
-  <!-- Load Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Internal Stylesheet (from style.css) -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sanskriti Cyber Security</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background: radial-gradient(circle at 20% 30%, #00bcd4, transparent 40%),
-                  radial-gradient(circle at 80% 70%, #673ab7, transparent 40%),
-                  radial-gradient(circle at 50% 50%, #009688, transparent 50%);
+        radial-gradient(circle at 80% 70%, #673ab7, transparent 40%),
+        radial-gradient(circle at 50% 50%, #009688, transparent 50%);
       background-color: #001f2b;
       background-blend-mode: screen;
       display: flex;
@@ -67,7 +68,7 @@
     .glass-sidebar {
       background: rgba(0, 0, 0, 0.45);
       border-right: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 2px 0 15px rgba(0,0,0,0.3);
+      box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
     }
 
     .glass-sidebar .nav-link {
@@ -81,7 +82,7 @@
     .glass-sidebar .nav-link:hover,
     .glass-sidebar .nav-link.active {
       background: rgba(0, 188, 212, 0.4);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
     /* MAIN CONTENT */
@@ -91,12 +92,12 @@
       justify-content: center;
       align-items: flex-start;
       overflow-y: auto;
-      padding: 20px; 
+      padding: 20px;
     }
 
-    /* ✅ GLASS CARD – transparent like background */
+    /* GLASS CARD */
     .glass-card {
-      background: rgba(0, 0, 0, 0.18);     /* subtle dark glass */
+      background: rgba(0, 0, 0, 0.18);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-radius: 16px;
@@ -136,7 +137,7 @@
       border-radius: 3px;
     }
 
-    /* === QUIZ STYLES === */
+    /* QUIZ STYLES */
     .quiz-container {
       background: rgba(16, 24, 32, 0.9);
       border: 2px solid #0ef;
@@ -226,7 +227,7 @@
       background: rgba(255, 0, 0, 0.3) !important;
       border-color: #f00;
     }
-    
+
     /* Video Grid */
     .video-grid {
       display: grid;
@@ -237,7 +238,7 @@
 
     .video-item {
       position: relative;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      padding-top: 56.25%;
       height: 0;
       border-radius: 12px;
       overflow: hidden;
@@ -254,12 +255,12 @@
 
     /* Responsive */
     @media (max-width: 576px) {
-       .glass-card {
-         margin-top: 20px;
+      .glass-card {
+        margin-top: 20px;
       }
     }
 
-    /* === CHATBOT STYLES === */
+    /* CHATBOT STYLES */
     .chat-fab {
       position: fixed;
       bottom: 30px;
@@ -298,7 +299,7 @@
       background: #001f2b;
       border: 2px solid #00eaff;
       border-radius: 16px;
-      box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
       z-index: 1009;
       display: flex;
       flex-direction: column;
@@ -339,7 +340,7 @@
       flex-direction: column;
       gap: 12px;
     }
-    
+
     .chat-message {
       padding: 10px 15px;
       border-radius: 12px;
@@ -395,125 +396,135 @@
       padding: 0 15px;
       cursor: pointer;
     }
-    
+
     @media (max-width: 576px) {
-        .chat-window {
-            width: calc(100vw - 40px);
-            right: 20px;
-            bottom: 80px;
-        }
-        .chat-fab {
-            bottom: 20px;
-            right: 20px;
-        }
+      .chat-window {
+        width: calc(100vw - 40px);
+        right: 20px;
+        bottom: 80px;
+      }
+      .chat-fab {
+        bottom: 20px;
+        right: 20px;
+      }
     }
   </style>
 </head>
 <body>
-
   <!-- HEADER -->
   <header class="main-header d-flex align-items-center justify-content-between px-4 py-2">
     <div class="d-flex align-items-center">
-      <!-- Replaced logo.jpg with an inline SVG icon -->
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="school-logo">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.333 9-6.03 9-11.623 0-1.662-.36-3.26-.998-4.748A11.959 11.959 0 0 1 12 2.714v.022Z" />
+      <!-- Simple shield icon as logo -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="school-logo"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.333 9-6.03 9-11.623 0-1.662-.36-3.26-.998-4.748A11.959 11.959 0 0 1 12 2.714v.022Z"
+        />
       </svg>
     </div>
-    <h1 class="portal-title flex-grow-1 text-center">Sanskriti Cyber Security</h1>
+    <h1 class="portal-title flex-grow-1 text-center">
+      Sanskriti Cyber Security
+    </h1>
   </header>
 
   <!-- WRAPPER -->
   <div class="d-flex" id="wrapper">
-
     <!-- SIDEBAR -->
     <div class="glass-sidebar text-white p-3" id="sidebar">
       <ul class="nav flex-column">
-        <li class="nav-item"><a href="#" class="nav-link text-white active" data-section="safety">Cyber Safety Tips</a></li>
-        <li class="nav-item"><a href="#" class="nav-link text-white" data-section="awareness">Cyber Awareness</a></li>
-        <li class="nav-item"><a href="#" class="nav-link text-white" data-section="digest">Daily Digest</a></li>
-        <li class="nav-item"><a href="#" class="nav-link text-white" data-section="manual">Citizen Manual</a></li>
-        <li class="nav-item"><a href="#" class="nav-link text-white" data-section="quiz">Quiz</a></li>
-        <li class="nav-item"><a href="#" class="nav-link text-white" data-section="videos">Videos</a></li>
+        <li class="nav-item">
+          <a
+            href="#"
+            class="nav-link text-white active"
+            data-section="safety"
+            >Cyber Safety Tips</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white" data-section="awareness"
+            >Cyber Awareness</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white" data-section="digest"
+            >Daily Digest</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white" data-section="manual"
+            >Citizen Manual</a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white" data-section="quiz">Quiz</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white" data-section="videos"
+            >Videos</a
+          >
+        </li>
       </ul>
     </div>
 
     <!-- MAIN CONTENT -->
     <div class="p-4 flex-grow-1" id="content">
-      <div class="glass-card p-4" id="main-card">    
-        <!-- Default content -->
-        <h2>Cyber Safety Tips</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
-          <div class="col">
-            <div class="card tip-card h-100">
-              <div class="card-body">
-                <h5 class="card-title">Use Strong Passwords</h5>
-                <p class="card-text">Create unique, complex passwords and avoid using the same one for multiple accounts.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card tip-card h-100">
-              <div class="card-body">
-                <h5 class="card-title">Enable Two-Factor Authentication</h5>
-                <p class="card-text">Add an extra layer of protection to your accounts with 2FA wherever possible.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card tip-card h-100">
-              <div class="card-body">
-                <h5 class="card-title">Avoid Phishing Scams</h5>
-                <p class="card-text">Never click suspicious links or share personal details via email or messages.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card tip-card h-100">
-              <div class="card-body">
-                <h5 class="card-title">Update Regularly</h5>
-                <p class="card-text">Keep your software, apps, and devices updated to patch security vulnerabilities.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card tip-card h-100">
-              <div class="card-body">
-                <h5 class="card-title">Use Secure Wi-Fi</h5>
-                <p class="card-text">Avoid public Wi-Fi for sensitive transactions. Use VPNs for secure connections.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card tip-card h-100">
-              <div class="card-body">
-                <h5 class="card-title">Backup Your Data</h5>
-                <p class="card-text">Regularly back up important data to prevent loss from attacks or hardware failure.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="glass-card p-4" id="main-card"></div>
     </div>
   </div>
 
-  <!-- === CHATBOT UI === -->
+  <!-- CHATBOT BUTTON -->
   <div class="chat-fab" id="chat-fab-btn">
     <!-- Chatbot Icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Z" />
-      <path d="M8.25 10.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V10.875Z" />
-      <path d="M10.125 12.375a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V12.375Z" />
-      <path d="M12 10.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V10.875Z" />
-      <path d="M13.875 12.375a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V12.375Z" />
-      <path d="M15.75 10.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V10.875Z" />
-      <path d="M16.5 13.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V13.875Z" />
-      <path d="M11.25 15.375a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V15.375Z" />
-      <path d="M13.125 16.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V16.875Z" />
-      <path d="M15 15.375a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V15.375Z" />
-      <path d="M7.5 13.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V13.875Z" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <path
+        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Z"
+      />
+      <path
+        d="M8.25 10.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V10.875Z"
+      />
+      <path
+        d="M10.125 12.375a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V12.375Z"
+      />
+      <path
+        d="M12 10.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V10.875Z"
+      />
+      <path
+        d="M13.875 12.375a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V12.375Z"
+      />
+      <path
+        d="M15.75 10.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V10.875Z"
+      />
+      <path
+        d="M16.5 13.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V13.875Z"
+      />
+      <path
+        d="M11.25 15.375a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V15.375Z"
+      />
+      <path
+        d="M13.125 16.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V16.875Z"
+      />
+      <path
+        d="M15 15.375a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V15.375Z"
+      />
+      <path
+        d="M7.5 13.875a.75.75 0 0 0-1.5 0v.001a.75.75 0 0 0 1.5 0V13.875Z"
+      />
     </svg>
   </div>
 
+  <!-- CHATBOT WINDOW -->
   <div class="chat-window" id="chat-window">
     <div class="chat-header">
       <span>CyberPal AI</span>
@@ -521,31 +532,206 @@
     </div>
     <div class="chat-body" id="chat-body">
       <div class="chat-message model">
-        Hi! I'm CyberPal. Ask me any questions about cyber safety, like "What is phishing?" or "How do I make a strong password?".
+        Hi! I'm CyberPal. Ask me anything about cyber safety, like "What is
+        phishing?" or "How do I make a strong password?"
       </div>
     </div>
     <div class="chat-input">
-      <input type="text" id="chat-input-text" placeholder="Ask a safety question...">
+      <input
+        type="text"
+        id="chat-input-text"
+        placeholder="Ask a safety question..."
+      />
       <button id="chat-send-btn">Send</button>
     </div>
   </div>
 
-  <!-- Load Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Internal JavaScript (from script.js) -->
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const links = document.querySelectorAll("#sidebar .nav-link");
       const mainCard = document.getElementById("main-card");
 
+      /* ========= SECTIONS ========= */
       const sections = {
-        safety: `...`,   /* keep your same JS sections here */
-        awareness: `...`,
-        digest: `...`,
+        safety: `
+          <h2>Cyber Safety Tips</h2>
+          <p class="text-center">Simple actions that keep you safe every day on the internet.</p>
+          <div class="row row-cols-1 row-cols-md-3 g-4 mt-3">
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Use Strong Passwords</h5>
+                  <p class="card-text">Create unique, complex passwords with letters, numbers, and symbols. Avoid using your name, birthday, or "123456".</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Enable Two-Factor Authentication</h5>
+                  <p class="card-text">Turn on 2FA (OTP / authenticator app) on your email, banking, and social media accounts for extra protection.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Beware of Phishing</h5>
+                  <p class="card-text">Do not click on unknown links or attachments. Check the sender ID, email address, and spelling before trusting any message.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Update Regularly</h5>
+                  <p class="card-text">Keep your phone, laptop, apps, and antivirus updated to fix security bugs and stay safe from new attacks.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Use Secure Wi-Fi</h5>
+                  <p class="card-text">Avoid using public Wi-Fi for banking or payments. If needed, use a VPN or mobile hotspot instead.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Backup Your Data</h5>
+                  <p class="card-text">Store important files on an external drive or cloud storage so you don’t lose them in case of an attack.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `,
+
+        awareness: `
+          <h2>Cyber Awareness</h2>
+          <p class="text-center mb-4">
+            Understanding threats is the first step in defeating them. Here are some common online risks you should know.
+          </p>
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Phishing Attacks</h5>
+                  <p class="card-text">
+                    Fake messages, emails, or websites that trick you into sharing passwords, OTPs, or bank details. They often look like messages from banks, delivery apps, or government bodies.
+                  </p>
+                  <p class="card-text"><strong>Golden rule:</strong> No genuine organisation asks for your OTP or full PIN on call, SMS, or WhatsApp.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Identity Theft</h5>
+                  <p class="card-text">
+                    When someone steals your personal information (Aadhaar, phone number, photos, etc.) and pretends to be you for fraud, loans, or blackmail.
+                  </p>
+                  <p class="card-text">
+                    Avoid oversharing personal details, documents, and location publicly on social media.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Online Harassment & Bullying</h5>
+                  <p class="card-text">
+                    Abusive comments, threats, non-consensual sharing of photos, or constant bullying online can deeply affect mental health.
+                  </p>
+                  <p class="card-text">
+                    Block, report, and inform a trusted adult or authority. You are never alone in this.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Financial Frauds & UPI Scams</h5>
+                  <p class="card-text">
+                    Fraudsters trick you into scanning QR codes, sharing OTPs, or “receiving” money that actually sends money from your account.
+                  </p>
+                  <p class="card-text">
+                    Remember: <strong>To receive money, you never need to enter a PIN.</strong> PIN is only for sending payments.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `,
+
+        digest: `
+          <h2>Daily Cyber Digest</h2>
+          <p class="text-center mb-4">
+            Quick daily reminders to keep your digital life clean and safe.
+          </p>
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">🌞 Morning Check</h5>
+                  <ul>
+                    <li>Clear suspicious notifications and spam messages.</li>
+                    <li>Check login alerts or new sign-ins on your accounts.</li>
+                    <li>Make sure your phone is locked with PIN/password/biometric.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">☕ During the Day</h5>
+                  <ul>
+                    <li>Think before clicking on ads or pop-ups.</li>
+                    <li>Verify before joining any random WhatsApp or Telegram group.</li>
+                    <li>Don’t share screenshots of OTPs or bank apps.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">🌆 Evening Wrap-Up</h5>
+                  <ul>
+                    <li>Sign out from shared or public devices.</li>
+                    <li>Backup important files once in a few days.</li>
+                    <li>Check app permissions (location, mic, camera) once a week.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card tip-card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">🧹 Digital Clean-Up Idea</h5>
+                  <p>
+                    Every Sunday, clean your "digital room":
+                  </p>
+                  <ul>
+                    <li>Delete unused apps and unknown browser extensions.</li>
+                    <li>Remove old downloads and suspicious files.</li>
+                    <li>Change at least one important password each month.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        `,
+
         manual: `
           <h2>Citizen Manual</h2>
-          <p class="mb-3">
+          <p class="mb-3 text-center">
             Follow this simple flow to stay safe online and know what to do if something goes wrong.
           </p>
 
@@ -554,7 +740,7 @@
               <h5>1️⃣ Identify the Source</h5>
               <p>Is the message, call, or link from a trusted person or official organisation?</p>
               <p><strong>If YES →</strong> Go to Step 2.</p>
-              <p><strong>If NO / Not sure →</strong> Treat it as suspicious.</p>
+              <p><strong>If NO / Not sure →</strong> Treat it as suspicious and do not click on anything.</p>
             </div>
 
             <div class="text-center mb-2"><h2>⬇️</h2></div>
@@ -564,8 +750,8 @@
               <ul>
                 <li>Spelling mistakes or strange language.</li>
                 <li>Unknown or shortened links.</li>
-                <li>Too good to be true offers (lottery, prizes, cashback, etc.).</li>
-                <li>Urgent messages: “last chance”, “your account will be blocked”.</li>
+                <li>Too good to be true offers (lottery, prizes, cashback, jobs, etc.).</li>
+                <li>Urgent messages: “last chance”, “your account will be blocked”, “police case will be filed”.</li>
               </ul>
               <p><strong>If ANY appear → STOP, don’t click, don’t share details.</strong></p>
             </div>
@@ -578,6 +764,11 @@
                 Contact the organisation or person using an official number, website, or in person. 
                 Never use the phone number or link given in the suspicious message.
               </p>
+              <ul>
+                <li>Check the official website or app from Play Store/App Store.</li>
+                <li>Call the official customer care number, not the one in the message.</li>
+                <li>Ask a parent, teacher, or trusted adult if you are unsure.</li>
+              </ul>
             </div>
 
             <div class="text-center mb-2"><h2>⬇️</h2></div>
@@ -585,51 +776,315 @@
             <div class="card mb-3 p-3 tip-card">
               <h5>4️⃣ Take Action</h5>
               <ul>
-                <li>Report suspicious messages and accounts on apps or to authorities.</li>
-                <li>Block unknown or abusive senders.</li>
-                <li>Change compromised passwords immediately.</li>
-                <li>Enable 2FA on important accounts.</li>
+                <li>Report suspicious messages and accounts on WhatsApp, Instagram, or the app you are using.</li>
+                <li>Block unknown or abusive senders immediately.</li>
+                <li>Change compromised passwords and enable 2FA.</li>
+                <li>Remove screen-sharing apps or unknown apps if you installed any by mistake.</li>
               </ul>
             </div>
 
             <div class="text-center mb-2"><h2>⬇️</h2></div>
 
-            <!-- ✅ changed from bg-light text-dark to tip-card -->
+            <!-- GLASS CARD FOR VICTIM -->
             <div class="card mb-3 p-3 tip-card">
               <h5>🏁 If You Become a Victim</h5>
               <p>
-                Don’t panic. Take screenshots, keep evidence, and report:
+                Don’t panic. Take screenshots, keep all evidence, and report as soon as possible:
               </p>
               <ul>
                 <li>📞 National Cybercrime Helpline (India): <strong>1930</strong></li>
                 <li>🌐 Online portal: <strong>cybercrime.gov.in</strong></li>
+                <li>🚔 Nearby police station or cyber cell.</li>
                 <li>👨‍🏫 Inform a parent, teacher, or trusted adult immediately.</li>
               </ul>
-              <p>Awareness + quick reporting can save money, accounts, and reputations.</p>
+              <p><strong>Awareness + quick reporting can save money, accounts, and reputations.</strong></p>
             </div>
           </div>
         `,
-        quiz: `...`,
-        videos: `...`
+
+        quiz: `
+          <h2>Cyber Safety Quiz</h2>
+          <p class="text-center mb-4">
+            Test your awareness! Each question has only one correct answer.
+          </p>
+          <div class="quiz-container">
+            <div id="quiz-question" class="quiz-question"></div>
+            <div id="quiz-options" class="quiz-options"></div>
+            <div id="quiz-progress" class="mt-3 text-center"></div>
+            <div id="quiz-result" class="quiz-result mt-4 d-none">
+              <p id="quiz-score"></p>
+              <p id="quiz-feedback"></p>
+              <button id="restart-quiz" class="btn btn-outline-info mt-3">Restart Quiz</button>
+            </div>
+          </div>
+        `,
+
+        videos: `
+          <h2>Cyber Awareness Videos</h2>
+          <p class="text-center mb-4">
+            Watch these short videos to understand cyber safety in a simple and visual way.
+          </p>
+          <div class="video-grid">
+            <div class="video-item">
+              <iframe src="https://www.youtube.com/embed/shQEXpUwaIY" title="Cyber Safety Tips" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+              <iframe src="https://www.youtube.com/embed/8APGdD6Oq4M" title="Phishing Explained" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+              <iframe src="https://www.youtube.com/embed/yb0kWSB41pI" title="Safe Social Media" allowfullscreen></iframe>
+            </div>
+          </div>
+        `,
       };
 
-      // default content
+      // Load default section (safety)
       mainCard.innerHTML = sections.safety;
 
-      links.forEach(link => {
-        link.addEventListener("click", e => {
+      // Sidebar navigation
+      links.forEach((link) => {
+        link.addEventListener("click", (e) => {
           e.preventDefault();
-          links.forEach(l => l.classList.remove("active"));
+          links.forEach((l) => l.classList.remove("active"));
           link.classList.add("active");
 
           const section = link.getAttribute("data-section");
           mainCard.innerHTML = sections[section];
 
-          if (section === "quiz") startQuiz();
+          if (section === "quiz") {
+            startQuiz();
+          }
         });
       });
 
-      /* keep your full quiz + chatbot JS here exactly as you had it */
+      /* ========= QUIZ LOGIC ========= */
+      function startQuiz() {
+        const questions = [
+          {
+            question:
+              "You receive a message saying you won a lottery and must click a link to claim it. What should you do?",
+            options: [
+              "Click the link quickly before it expires",
+              "Ignore, delete the message, and report it as spam",
+              "Reply and ask if it is real",
+              "Share it with friends so they can also win",
+            ],
+            answer: 1,
+          },
+          {
+            question:
+              "Which of these is the best example of a strong password?",
+            options: [
+              "pratham123",
+              "ilovesanskriti",
+              "Sanskriti@2008",
+              "Aa!9pL$2qZ",
+            ],
+            answer: 3,
+          },
+          {
+            question:
+              "A stranger asks you to share your OTP saying they are from the bank. What is the correct response?",
+            options: [
+              "Share the OTP if the caller sounds polite",
+              "Share the OTP only if they know your account number",
+              "Never share OTP with anyone, even if they claim to be from the bank",
+              "Ask them to send the request again later",
+            ],
+            answer: 2,
+          },
+          {
+            question:
+              "Which of these actions is the safest when using public Wi-Fi?",
+            options: [
+              "Doing online banking and UPI payments",
+              "Logging into all your accounts",
+              "Using it only for basic browsing and avoiding logins",
+              "Turning off your phone’s password while using Wi-Fi",
+            ],
+            answer: 2,
+          },
+          {
+            question:
+              "You see cyberbullying happening in a class WhatsApp group. What should you do?",
+            options: [
+              "Join and make fun for entertainment",
+              "Stay silent, it’s not your problem",
+              "Take screenshots, support the victim, and report to a teacher/parent",
+              "Forward it to other groups",
+            ],
+            answer: 2,
+          },
+        ];
+
+        let current = 0;
+        let score = 0;
+
+        const qElem = document.getElementById("quiz-question");
+        const optElem = document.getElementById("quiz-options");
+        const progressElem = document.getElementById("quiz-progress");
+        const resultBox = document.getElementById("quiz-result");
+        const scoreText = document.getElementById("quiz-score");
+        const feedbackText = document.getElementById("quiz-feedback");
+
+        function renderQuestion() {
+          resultBox.classList.add("d-none");
+          const q = questions[current];
+          qElem.textContent = q.question;
+          optElem.innerHTML = "";
+          q.options.forEach((opt, idx) => {
+            const btn = document.createElement("button");
+            btn.textContent = opt;
+            btn.addEventListener("click", () => handleAnswer(idx));
+            optElem.appendChild(btn);
+          });
+          progressElem.textContent = `Question ${current + 1} of ${
+            questions.length
+          }`;
+        }
+
+        function handleAnswer(selectedIndex) {
+          const q = questions[current];
+          const buttons = optElem.querySelectorAll("button");
+          buttons.forEach((btn, idx) => {
+            btn.disabled = true;
+            if (idx === q.answer) {
+              btn.classList.add("correct");
+            }
+            if (idx === selectedIndex && idx !== q.answer) {
+              btn.classList.add("wrong");
+            }
+          });
+
+          if (selectedIndex === q.answer) {
+            score++;
+          }
+
+          setTimeout(() => {
+            current++;
+            if (current < questions.length) {
+              renderQuestion();
+            } else {
+              showResult();
+            }
+          }, 800);
+        }
+
+        function showResult() {
+          qElem.textContent = "Quiz Completed!";
+          optElem.innerHTML = "";
+          progressElem.textContent = "";
+          resultBox.classList.remove("d-none");
+          scoreText.textContent = `You scored ${score} out of ${questions.length}.`;
+
+          let feedback = "";
+          if (score === questions.length) {
+            feedback = "Outstanding! You are a true Cyber Guardian of Sanskriti!";
+          } else if (score >= 3) {
+            feedback =
+              "Good job! You have good awareness. Revise the tips and keep improving.";
+          } else {
+            feedback =
+              "You’re just getting started. Revisit the safety tips and try again!";
+          }
+          feedbackText.textContent = feedback;
+
+          const restartBtn = document.getElementById("restart-quiz");
+          restartBtn.onclick = () => {
+            current = 0;
+            score = 0;
+            renderQuestion();
+          };
+        }
+
+        renderQuestion();
+      }
+
+      /* ========= CHATBOT LOGIC ========= */
+      const chatFab = document.getElementById("chat-fab-btn");
+      const chatWindow = document.getElementById("chat-window");
+      const closeChatBtn = document.getElementById("close-chat-btn");
+      const chatBody = document.getElementById("chat-body");
+      const chatInput = document.getElementById("chat-input-text");
+      const chatSendBtn = document.getElementById("chat-send-btn");
+
+      chatFab.addEventListener("click", () => {
+        chatWindow.classList.add("open");
+      });
+
+      closeChatBtn.addEventListener("click", () => {
+        chatWindow.classList.remove("open");
+      });
+
+      function addMessage(text, type) {
+        const div = document.createElement("div");
+        div.classList.add("chat-message", type);
+        div.textContent = text;
+        chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }
+
+      function addLoading() {
+        const div = document.createElement("div");
+        div.classList.add("chat-message", "loading");
+        div.textContent = "Thinking...";
+        chatBody.appendChild(div);
+        chatBody.scrollTop = chatBody.scrollHeight;
+        return div;
+      }
+
+      function getBotReply(message) {
+        const msg = message.toLowerCase();
+
+        if (msg.includes("phishing")) {
+          return "Phishing is when attackers send fake messages, emails, or links that look real to steal your passwords, OTPs, or money. Always double check the sender and URL, and never share your OTP.";
+        }
+        if (
+          msg.includes("password") ||
+          msg.includes("strong") ||
+          msg.includes("secure")
+        ) {
+          return "A strong password has at least 10–12 characters with capital letters, small letters, numbers, and symbols. Example pattern: Word + Number + Symbol like 'Tree9!Moon'. Don’t reuse the same password everywhere.";
+        }
+        if (msg.includes("otp")) {
+          return "OTP (One-Time Password) is secret. Never share it with anyone on call, chat, or SMS, even if they claim to be from bank, police, or any app.";
+        }
+        if (msg.includes("upi") || msg.includes("payment")) {
+          return "Remember: To receive money, you don’t need to enter a PIN. PIN is only required when YOU send money. If someone asks you to enter PIN to 'receive' money, it’s a scam.";
+        }
+        if (
+          msg.includes("bully") ||
+          msg.includes("harass") ||
+          msg.includes("abuse")
+        ) {
+          return "If you face online bullying or harassment, take screenshots, block the person, and report it. Inform a parent, teacher, or trusted adult. You can also report serious cases on cybercrime.gov.in.";
+        }
+        if (msg.includes("safe") || msg.includes("tips")) {
+          return "Quick safety tips: 1) Use strong passwords and 2FA, 2) Don’t click unknown links, 3) Don’t share OTP or PIN, 4) Review app permissions, 5) Talk to trusted adults if something feels wrong.";
+        }
+
+        return "I’m a simple school chatbot 😊. Try asking me about phishing, strong passwords, OTP safety, UPI frauds, or cyberbullying.";
+      }
+
+      function handleSend() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        addMessage(text, "user");
+        chatInput.value = "";
+        const loading = addLoading();
+        setTimeout(() => {
+          loading.remove();
+          const reply = getBotReply(text);
+          addMessage(reply, "model");
+        }, 600);
+      }
+
+      chatSendBtn.addEventListener("click", handleSend);
+      chatInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          handleSend();
+        }
+      });
     });
   </script>
 </body>
